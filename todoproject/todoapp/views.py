@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from todoapp.models import ToDoListItem
 
+
 # Create your views here.
 
 
@@ -10,6 +11,7 @@ def toDoAppView(request):
 
     return render(request, "index.html", {"allItems": all_to_do_items})
 
+
 def addTodoView(request):
     x = request.POST['content']
     print(x)
@@ -17,9 +19,8 @@ def addTodoView(request):
     new_item.save()
     return HttpResponseRedirect('/todoapp/')
 
-def clearTodoItemView(request):
-    item_id = request.POST['item']
-    delete_item = ToDoListItem.objects.filter(id = item_id)
-    if delete_item.exsist():
-        delete_item.delete()
+
+def clearTodoItemView(request, item_id):
+    delete_item = ToDoListItem.objects.filter(id=item_id)
+    delete_item.delete()
     return HttpResponseRedirect('/todoapp/')
