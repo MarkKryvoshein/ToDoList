@@ -18,5 +18,8 @@ def addTodoView(request):
     return HttpResponseRedirect('/todoapp/')
 
 def clearTodoItemView(request):
-
+    item_id = request.POST['item']
+    delete_item = ToDoListItem.objects.filter(id = item_id)
+    if delete_item.exsist():
+        delete_item.delete()
     return HttpResponseRedirect('/todoapp/')
