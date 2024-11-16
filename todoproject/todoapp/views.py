@@ -21,6 +21,6 @@ def addTodoView(request):
 
 
 def clearTodoItemView(request, item_id):
-    delete_item = ToDoListItem.objects.filter(id=item_id)
+    delete_item = ToDoListItem.objects.get(id=item_id)
     delete_item.delete()
     return HttpResponseRedirect('/todoapp/')
